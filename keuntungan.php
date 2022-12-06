@@ -1,0 +1,192 @@
+<?php session_start(); ?>
+<html lang="en">
+          <head>
+            <meta charset="utf-8">
+          
+            <title>NEW SARJANA CHEMICAL</title>
+            <meta name="description" content="Figma htmlGenerator">
+            <meta name="author" content="htmlGenerator">
+            <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Iceland&display=swap" rel="stylesheet">
+
+            <link rel="stylesheet" href="styles2.css">
+            <link rel="stylesheet" href="styles4.css">
+            
+            <style>
+              /*
+                Figma Background for illustrative/preview purposes only.
+                You can remove this style tag with no consequence
+              */
+              body {background: rgba(96.15624949336052, 125.81190258264542, 192.31249898672104, 1); }
+            </style>
+
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+            <!-- Google Fonts -->
+            <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+            <!-- MDB -->
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css" rel="stylesheet"/>
+            <!-- MDB -->
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"></script>
+            <script>
+                    function keuntungan() {
+                    var bulan = document.getElementById("bulan").value;
+                    var tahun = document.getElementById("tahun").value;
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("txtHint").innerHTML = this.responseText;
+                    }
+                    };
+                    xmlhttp.open("GET","keuntungan-process.php?bulan="+bulan+"&tahun="+tahun,true);
+                    xmlhttp.send();
+                    
+                    }
+                </script>
+          </head>
+          
+          <body style="background-color: rgba(96.15624949336052, 125.81190258264542, 192.31249898672104, 1);;">
+            <nav class="navbar navbar-expand-lg navbar-light" style="background-color:rgba(1.0000000591389835, 32.00000189244747, 96.00000187754631, 1);">
+              <div class="container-fluid">
+                <!-- Navbar brand -->
+                <!-- <a href="pdashboard.php"><img src="images/back.png" alt="back" width="50px"></a> -->
+                <a class="navbar-brand" href="#"> <img src="images/rectangle_1.png" alt="logo" width="232px"></a>
+            
+                <!-- Toggle button -->
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-mdb-toggle="collapse"
+                  data-mdb-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <i class="fas fa-bars"></i>
+                </button>
+            
+                <!-- Collapsible wrapper -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+            
+                  <!-- Icons -->
+                  <ul class="navbar-nav d-flex flex-row me-1">
+                    <li class="nav-item me-3 me-lg-0">
+                      <a class="nav-link" href="logout.php"><span class="logout" style="color:rgb(255, 255, 255); font-size:20px;">Log Out</span></a>
+                    </li>
+                    <li class="nav-item me-3 me-lg-0">
+                      <a class="nav-link" href="#"><span style="color:rgb(255, 255, 255); font-size:20px;"><?php echo $_SESSION['username'];?></span></a>
+                    </li>
+                    <li>
+                      <img src="images/account.png" alt="account" width="70px">
+                    </li>
+                  </ul>
+                  
+                </div>
+              </div>
+            </nav>
+            <br>
+            <div class="d-flex justify-content-center">
+                <h1 style="font-family:Iceland; color: white; ">Data Keuntungan</h1>
+            </div>
+            <br>
+            <!-- <div class=e53_91_ style="position: unset;">
+                <div class=e53_30>
+                  <span  class="e53_33">Data Keuntungan</span>
+                  <div class="e53_37"></div>
+                </div>
+                <div class="e53_50"></div>
+                <div class=e53_53>
+                  <div class="e53_54"></div>
+                  <div class="e53_55"></div>
+                </div>
+                <div class=e53_56>
+                  <div class=e53_57>
+                    <div class="e53_58"></div>
+                    <span  class="e53_59">
+                        Deterjen
+                    </span>
+                    <div class="e53_60"></div>
+                  </div>
+                </div>
+                <div class=e53_64>
+                  <div class="e53_65"></div>
+                  <span  class="e53_66">
+                    Fabric Softener
+                    </span>
+                  <div class="e53_67"></div>
+                </div>
+                <div class=e53_68>
+                  <div class="e53_69"></div>
+                  <span  class="e53_70">
+                    Parfum Laundry 
+                    </span>
+                  <div class="e53_71"></div>
+                </div>
+                <div class="e53_74"></div>
+                <div class="e53_75"></div>
+                <div class="e53_76"></div>
+                <div class="e53_99"></div> -->
+                <!-- deterjen -->
+                <!-- <p  class="e53_77" style="font-size: 20px;">
+                    Total harga : Rp 40000
+                    <br>Terjual : <input type="button" id="jml-dtj" value=""/>
+                    <br>Total pemasukan : <input type="button" id="total-dtj" value=""/>
+                </p> -->
+                <!-- plaundry -->
+                <!-- <p  class="e53_78" style="font-size: 20px;">
+                    Total harga : Rp 140000
+                    <br>Terjual : <input type="button" id="jml-pl" value=""/>
+                    <br>Total pemasukan : <input type="button" id="total-pl" value=""/>
+                </p> -->
+                <!-- fsoftener -->
+                <!-- <p  class="e53_79" style="font-size: 20px;">
+                    Total harga : Rp 50000
+                    <br>Terjual : <input type="button" id="jml-fs" value=""/>
+                    <br>Total pemasukan : <input type="button" id="total-fs" value=""/>
+                </p>  -->
+                <!-- <div class="e53_284"></div>
+                <span class="kirim">Kirim</span> -->
+            <!-- </div> -->
+            <div class="d-flex justify-content-between">
+                <h4 style="font-family:Iceland; color: white; margin-left: 20px;">Lihat data
+                <select class="selectpicker" data-style="btn-info" onchange="keuntungan()" id="bulan" name="bulan">
+                        <option value="0">Per-Tahun</option>
+                        <option value="1">Januari</option>
+                        <option value="2">Februari</option>
+                        <option value="3">Maret</option>
+                        <option value="4">April</option>
+                        <option value="5">Mei</option>
+                        <option value="6">Juni</option>
+                        <option value="7">Juli</option>
+                        <option value="8">Agustus</option>
+                        <option value="9">September</option>
+                        <option value="10">Oktober</option>
+                        <option value="11">November</option>
+                        <option value="12">Desember</option>
+                    </select>
+                    <select class="selectpicker" data-style="btn-info" onchange="keuntungan()" id="tahun" name="tahun">
+                        <option ><?php echo date("Y")?></option>
+                        <option ><?php echo date("Y")-1?></option>
+                        <option ><?php echo date("Y")-2?></option>
+                        <option ><?php echo date("Y")-3?></option>
+                        <option ><?php echo date("Y")-4?></option>
+                    </select>
+                </h4>
+                <h4 style="font-family:Iceland; color: white; margin-right: 20px;">Total Saat Ini : 
+                    <?php 
+                        include('config.php');
+                        $query = "SELECT (total_pemasukan-total_pengeluaran) AS total FROM catatan_keuangan";
+                        $total=mysqli_query($db,$query);
+                        $result=mysqli_fetch_array($total);
+                        echo $result['total'];
+                    ?>
+                </h4>
+            </div>
+                    
+                    <!-- <input type="submit" value="Submit"> -->
+                <div style="font-family:Monsterrat; color: white; margin-left: 20px;" id="txtHint"><b>Info will be listed here...</b></div>
+                <div  class="e53_26" style="position: absolute; top: 530px;"></div>
+              <div  class="e53_25" style="position: absolute; top: 530px; left: 300px"></div>
+            </body>
+          </html>
