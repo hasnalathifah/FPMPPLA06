@@ -78,14 +78,14 @@
                   <span  class="e2_271">Pengeluaran</span>
                 </div>
               </a>
-              <a href="#">
+              <a href="marketplace.php">
                 <div class=e2_273>
                   <span  class="e2_274">Marketplace</span>
                 </div>
               </a>
-              <a href="cashflow.php">
+              <a href="nonmarketplace.php">
                 <div class=e14_18>
-                  <span  class="e14_19">Cashflow</span>
+                  <span  class="e14_19" style="position: absolute; left: 70px;">Non Marketplace</span>
                 </div>
               </a>
               <div class="e14_75"></div>

@@ -71,43 +71,71 @@
               </div>
             </nav>
             <br>
-            <div class="d-flex justify-content-center">
-                <h1 style="font-family:Iceland; color: white; ">Daftar Karyawan</h1>
+            <div class="container d-flex justify-content-center">
+                <h1 style="font-family:Iceland; color: white; ">Daftar Pemasukan</h1>
             </div>
-            <br>
-            <div class="d-flex justify-content-between">
-                <a href="pdashboard.php" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Kembali ke menu</a>
-                <a href="addkaryawan.php" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Tambah baru</a>
-            </div>
+            <span style="color: white ; font-family: Iceland; font-size: 25px;">
+                    Total pemasukan Marketplace : Rp 
+                            <?php
+                                include('config.php');
+                                $query = "SELECT SUM(qty*barang.harga) AS total FROM `transaksi` JOIN barang ON kode_barang=barang.id WHERE Marketplace !='N/A'";
+                                $total=mysqli_query($db,$query);
+                                $result=mysqli_fetch_array($total);
+                                echo $result['total'];
+                            ?>
+                    </span>
             <br>
             <div class="d-flex justify-content-center">
                 <table class="table table-striped table-dark table-sm" border="1" >
                 <thead>
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">Password</th>
-                        <th scope="col">Tindakan</th>
+                        <th scope="col">Tanggal</th>
+                        <th scope="col">Nama customer</th>
+                        <th scope="col">Alamat</th>
+                        <th scope="col">No telp</th>
+                        <th scope="col">Marketplace</th>
+                        <th scope="col">Jenis barang</th>
+                        <th scope="col">qty</th>
+                        <th scope="col">Total harga</th>
+                        <th scope="col">Metode Pembayaran</th>
+                        <th scope="col">Pencatat</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php
-                include('config.php');
-                    $sql = "SELECT * FROM karyawan";
-                    $query = mysqli_query($db, $sql);
+                    include('config.php');
+
+                    $batas = 10;
+                    $halaman = isset($_GET['halaman'])?(int)$_GET['halaman'] : 1;
+                    $halaman_awal = ($halaman>1) ? ($halaman * $batas) - $batas : 0;	
+    
+                    $previous = $halaman - 1;
+                    $next = $halaman + 1;
                     
-                    $i=1;
-                    while($karyawan = mysqli_fetch_array($query)){
+                    $sql = "SELECT transaksi.id, tanggal, nama_customer, alamat, no_telp, Marketplace, jenis_barang, qty, harga*qty AS total, Payment_method, pencatat FROM transaksi JOIN barang ON transaksi.kode_barang = barang.id LEFT JOIN karyawan ON transaksi.pencatat=karyawan.username WHERE Marketplace != 'N/A'";
+                    $query = mysqli_query($db, $sql);
+                    $jumlah_data = mysqli_num_rows($query);
+                    $total_halaman = ceil($jumlah_data / $batas);
+
+                    $sql = "SELECT transaksi.id, tanggal, nama_customer, alamat, no_telp, Marketplace, jenis_barang, qty, harga*qty AS total, Payment_method, pencatat FROM transaksi JOIN barang ON transaksi.kode_barang = barang.id LEFT JOIN karyawan ON transaksi.pencatat=karyawan.username WHERE Marketplace != 'N/A' limit $halaman_awal, $batas";
+                    $data = mysqli_query($db, $sql);
+                    $nomor = $halaman_awal+1;
+
+                    while($transaksi = mysqli_fetch_array($data)){
                         echo "<tr>";
                         
-                        echo "<td>".$i++."</td>";
-                        echo "<td>".$karyawan['username']."</td>";
-                        echo "<td>".$karyawan['password']."</td>";
-                        
-                        echo "<td>";
-                        echo "<a href='karyawan-edit.php?username=".$karyawan['username']."'>Edit</a> | ";
-                        echo "<a href='hapus-kry.php?username=".$karyawan['username']."'>Hapus</a>";
-                        echo "</td>";
+                        echo "<td>".$nomor++."</td>";
+                        echo "<td>".$transaksi['tanggal']."</td>";
+                        echo "<td>".$transaksi['nama_customer']."</td>";
+                        echo "<td>".$transaksi['alamat']."</td>";
+                        echo "<td>".$transaksi['no_telp']."</td>";
+                        echo "<td>".$transaksi['Marketplace']."</td>";
+                        echo "<td>".$transaksi['jenis_barang']."</td>";
+                        echo "<td>".$transaksi['qty']."</td>";
+                        echo "<td>"."Rp ".$transaksi['total']."</td>";
+                        echo "<td>".$transaksi['Payment_method']."</td>";
+                        echo "<td>".$transaksi['pencatat']."</td>";
                         
                         echo "</tr>";
                     }		
@@ -115,5 +143,22 @@
                 </tbody>
                 </table>
             </div>
+            <nav>
+			    <ul class="pagination justify-content-center">
+				<li class="page-item" style="background-color: white;">
+					<a class="page-link" style="color: blue;" <?php if($halaman > 1){ echo "href='?halaman=$previous'"; } ?>>Previous</a>
+				</li>
+				<?php 
+				for($x=1;$x<=$total_halaman;$x++){
+					?> 
+					<li class="page-item" style="background-color: white;"><a class="page-link" style="color: blue;" href="?halaman=<?php echo $x ?>"><?php echo $x; ?></a></li>
+					<?php
+				}
+				?>				
+				<li class="page-item" style="background-color: white;">
+					<a  class="page-link" style="color: blue;" <?php if($halaman < $total_halaman) { echo "href='?halaman=$next'"; } ?>>Next</a>
+				</li>
+                </ul>
+            </nav>
       </body>
     </html>
