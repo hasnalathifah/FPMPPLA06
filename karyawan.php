@@ -105,8 +105,8 @@
                         echo "<td>".$karyawan['password']."</td>";
                         
                         echo "<td>";
-                        echo "<a href='form-edit.php?username=".$karyawan['username']."'>Edit</a> | ";
-                        echo "<a href='hapus.php?username=".$karyawan['username']."'>Hapus</a>";
+                        echo "<a href='karyawan-edit.php?username=".$karyawan['username']."'>Edit</a> | ";
+                        echo "<a href='hapus-kry.php?username=".$karyawan['username']."'>Hapus</a>";
                         echo "</td>";
                         
                         echo "</tr>";
