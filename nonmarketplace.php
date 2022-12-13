@@ -74,6 +74,7 @@
             <div class="container d-flex justify-content-center">
                 <h1 style="font-family:Iceland; color: white; ">Daftar Pemasukan</h1>
             </div>
+            <br>
             <span style="color: white ; font-family: Iceland; font-size: 25px;">
                     Total pemasukan Non Marketplace : Rp 
                             <?php
@@ -112,12 +113,12 @@
                     $previous = $halaman - 1;
                     $next = $halaman + 1;
                     
-                    $sql = "SELECT transaksi.id, tanggal, nama_customer, alamat, no_telp, jenis_barang, qty, harga*qty AS total, Payment_method, pencatat FROM transaksi JOIN barang ON transaksi.kode_barang = barang.id LEFT JOIN karyawan ON transaksi.pencatat=karyawan.username WHERE Marketplace = 'N/A'";
+                    $sql = "SELECT transaksi.id, tanggal, nama_customer, alamat, no_telp, jenis_barang, qty, harga*qty AS total, Payment_method, pencatat FROM transaksi JOIN barang ON transaksi.kode_barang = barang.id LEFT JOIN karyawan ON transaksi.pencatat=karyawan.username WHERE Marketplace = 'N/A'  ORDER BY tanggal DESC";
                     $query = mysqli_query($db, $sql);
                     $jumlah_data = mysqli_num_rows($query);
                     $total_halaman = ceil($jumlah_data / $batas);
 
-                    $sql = "SELECT transaksi.id, tanggal, nama_customer, alamat, no_telp, jenis_barang, qty, harga*qty AS total, Payment_method, pencatat FROM transaksi JOIN barang ON transaksi.kode_barang = barang.id LEFT JOIN karyawan ON transaksi.pencatat=karyawan.username WHERE Marketplace = 'N/A' limit $halaman_awal, $batas";
+                    $sql = "SELECT transaksi.id, tanggal, nama_customer, alamat, no_telp, jenis_barang, qty, harga*qty AS total, Payment_method, pencatat FROM transaksi JOIN barang ON transaksi.kode_barang = barang.id LEFT JOIN karyawan ON transaksi.pencatat=karyawan.username WHERE Marketplace = 'N/A'  ORDER BY tanggal DESC limit $halaman_awal, $batas";
                     $data = mysqli_query($db, $sql);
                     $nomor = $halaman_awal+1;
 

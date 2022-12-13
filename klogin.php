@@ -33,9 +33,9 @@
                 <span  class="ei86_49_2_14">Password</span> -->
                 <form action="klogin-process.php" method="POST">
                     <span  class="ei86_49_2_13"><label for="username">Username</label></span>
-                    <input type="text" class="ei86_49_2_7" name="username" placeholder="Masukkan username...">
+                    <input type="text" class="ei86_49_2_7" name="username" placeholder="Masukkan username..." required>
                     <span  class="ei86_49_2_14"><label for="password">Password</label></span>
-                    <input type="password" class="ei86_49_2_8" name="password" placeholder="Masukkan password...">
+                    <input type="password" class="ei86_49_2_8" name="password" placeholder="Masukkan password..." required>
                     <input type="submit" class="ei86_49_2_9" value="Masuk">
                 </form>
                 <div class="ei86_49_2_20"></div>
@@ -45,17 +45,17 @@
                     <div class=ei86_49_86_97></div>
                 </a> -->
               </div>
+              <script type="text/javascript">
+                function validasi() {
+                  var username = document.getElementById("username").value;
+                  var password = document.getElementById("password").value;		
+                  if (username=="" || password=="") {
+                    alert("Username dan Password harus di isi !");
+                    return false;
+                  }else{
+                    return true;
+                  }
+                }
+              </script>
           </body>
-          <script type="text/javascript">
-          function validasi() {
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;		
-            if (username != "" && password!="") {
-              return true;
-            }else{
-              alert('Username dan Password harus di isi !');
-              return false;
-            }
-	        }
-          </script>
           </html>

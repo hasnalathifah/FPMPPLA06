@@ -99,11 +99,25 @@
                 <tbody>
                 <?php
                 include('config.php');
-                    $sql = "SELECT * FROM pengeluaran";
+
+                    $batas = 10;
+                    $halaman = isset($_GET['halaman'])?(int)$_GET['halaman'] : 1;
+                    $halaman_awal = ($halaman>1) ? ($halaman * $batas) - $batas : 0;	
+
+                    $previous = $halaman - 1;
+                    $next = $halaman + 1;
+                    
+                    $sql = "SELECT * FROM pengeluaran ORDER BY tanggal DESC";
                     $query = mysqli_query($db, $sql);
+                    $jumlah_data = mysqli_num_rows($query);
+                    $total_halaman = ceil($jumlah_data / $batas);
+
+                    $sql = "SELECT * FROM pengeluaran ORDER BY tanggal DESC limit $halaman_awal, $batas";
+                    $data = mysqli_query($db, $sql);
+                    $nomor = $halaman_awal+1;
                     
                     $i=1;
-                    while($pengeluaran = mysqli_fetch_array($query)){
+                    while($pengeluaran = mysqli_fetch_array($data)){
                         echo "<tr>";
                         
                         echo "<td>".$i++."</td>";
@@ -118,5 +132,22 @@
                 </tbody>
                 </table>
             </div>
+            <nav>
+              <ul class="pagination justify-content-center">
+                <li class="page-item" style="background-color: white;">
+                  <a class="page-link" style="color: blue;" <?php if($halaman > 1){ echo "href='?halaman=$previous'"; } ?>>Previous</a>
+                </li>
+                <?php 
+                  for($x=1;$x<=$total_halaman;$x++){
+                ?> 
+                    <li class="page-item" style="background-color: white;"><a class="page-link" style="color: blue;" href="?halaman=<?php echo $x ?>"><?php echo $x; ?></a></li>
+                    <?php
+                  }
+                    ?>				
+                <li class="page-item" style="background-color: white;">
+                  <a  class="page-link" style="color: blue;" <?php if($halaman < $total_halaman) { echo "href='?halaman=$next'"; } ?>>Next</a>
+                </li>
+              </ul>
+            </nav>
       </body>
     </html>

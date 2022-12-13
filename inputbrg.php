@@ -73,7 +73,7 @@
             </nav>
             <div class=e53_91_ style="position: unset;">
                 <div class=e53_30>
-                  <span  class="e53_33">Tambah Stok Barang</span>
+                  <span  class="e53_33">Edit Stok Barang</span>
                   <div class="e53_37"></div>
                 </div>
                 <div class="e53_50"></div>
@@ -153,7 +153,7 @@
                         <input type="text" class="add" id="plaundry" name="plaundry" value="0"/>
                         <input type="button" class="plus" onclick="addPLaundry()" value="+" />
                     </div>
-                    <input type="submit" class="e53_284" value="Tambahkan" name="tambah" style="color:rgb(255, 255, 255) ;">
+                    <input type="submit" class="e53_284" value="Kirimkan" name="tambah" style="color:rgb(255, 255, 255) ;">
                 </form>
                 <script>
                     function addDeterjen()
@@ -181,7 +181,6 @@
                     {
                         var value = parseInt(document.getElementById('deterjen').value, 10);
                         value = isNaN(value) ? 0 : value;
-                        if (value==0) value++;
                         value--;
                         document.getElementById('deterjen').value = value;
                     }
@@ -189,7 +188,6 @@
                     {
                         var value = parseInt(document.getElementById('fsoftener').value, 10);
                         value = isNaN(value) ? 0 : value;
-                        if (value==0) value++;
                         value--;
                         document.getElementById('fsoftener').value = value;
                     }
@@ -197,7 +195,6 @@
                     {
                         var value = parseInt(document.getElementById('plaundry').value, 10);
                         value = isNaN(value) ? 0 : value;
-                        if (value==0) value++;
                         value--;
                         document.getElementById('plaundry').value = value;
                     }

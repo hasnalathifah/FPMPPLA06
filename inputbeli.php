@@ -73,12 +73,13 @@
             </nav>
             <div class=e86_76>
                 <div class="e2_136"></div>
+                <span  class="e2_150" style="position: absolute; top: 20px; left: 520px;">Data Pelanggan</span>
                 <!-- <div class=e2_285>
                   <div class="e2_286"></div>
                   <div class="e2_289"></div>
                 </div> -->
                 <div class=e2_151>
-                  <div class="e2_142"></div><span  class="e2_150">Data Pelanggan</span>
+                  <!-- <div class="e2_142"></div> -->
                   <!-- <form action="inputbeli2.html">
                     <span  class="e2_145"><label for="nama">Nama</label></span>
                     <input type="text" class="e2_143" name="nama" placeholder="Masukkan nama customer...">
@@ -139,16 +140,22 @@
                 <span class="kirim">Kirim</span> -->
             </div>
             <form action="inputbeli-process.php" method="POST">
-              <div class="e86_76">
-                <div class="e2_151">
+              <!-- <div class="e86_76"> -->
+                <div style="left:415.0001220703125px; top:80px; position: absolute;">
                   <span  class="e2_145"><label for="nama">Nama</label></span>
-                  <input type="text" class="e2_143" name="nama" placeholder="Masukkan nama customer...">
+                  <input type="text" class="e2_143" style="font-weight: bold;" name="nama" placeholder="Masukkan nama customer..." required>
                   <span  class="e2_146"><label for="alamat">Alamat</label></span>
-                  <input type="text" class="e2_144" name="alamat" placeholder="Masukkan alamat customer...">
+                  <input type="text" class="e2_144" style="font-weight: bold;" name="alamat" placeholder="Masukkan alamat customer..." required>
                   <span  class="e2_148"><label for="notelp">No Telp</label></span>
-                  <input type="text" class="e2_147" name="notelp" placeholder="Masukkan no telp customer...">
+                  <input type="text" class="e2_147" style="font-weight: bold;" name="notelp" placeholder="Masukkan no telp customer..." required>
+                  <span  class="e2_148" style="top: 490px;"><label for="pmethod">MetodePembayaran</label></span>
+                  <input type="text" class="e2_147" style="top: 520px; font-weight: bold;" name="pmethod" placeholder="Masukkan metode pembayaran..." value="CASH" required>
+                  <span  class="e2_148" style="top: 590px;"><label for="marketplace">Marketplace</label></span>
+                  <input type="text" class="e2_147" style="top: 620px; font-weight: bold;" name="marketplace" placeholder="Masukkan nama marketplace..." value="N/A" required>
+                  <span  class="e2_148" style="top: 690px;"><label for="noresi">No Resi</label></span>
+                  <input type="text" class="e2_147" style="top: 720px; font-weight: bold;" name="noresi" placeholder="Masukkan nama marketplace..." value="N/A" required>
               </div>
-                </div>
+                <!-- </div> -->
               <div class="e53_91">
                 <div class="addDeterjen">
                   <input type="button" class="min" onclick="delDeterjen()" value="-" />
